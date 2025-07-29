@@ -1,24 +1,32 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class PasswordGenerator {
+public class Calculator {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        String lower = "abcdefghijklmnopqrstuvwxyz";
-        String digits = "0123456789";
-        String symbols = "!@#$%^&*()";
-        String allChars = upper + lower + digits + symbols;
+        System.out.print("Enter first number: ");
+        double a = sc.nextDouble();
+        System.out.print("Enter second number: ");
+        double b = sc.nextDouble();
 
-        System.out.print("Enter password length: ");
-        int length = sc.nextInt();
-        StringBuilder password = new StringBuilder();
-        Random rand = new Random();
+        System.out.println("Choose operation: + - * /");
+        char op = sc.next().charAt(0);
+        double result;
 
-        for (int i = 0; i < length; i++) {
-            int index = rand.nextInt(allChars.length());
-            password.append(allChars.charAt(index));
+        switch (op) {
+            case '+': result = a + b; break;
+            case '-': result = a - b; break;
+            case '*': result = a * b; break;
+            case '/': 
+                if (b != 0) result = a / b;
+                else {
+                    System.out.println("Cannot divide by zero.");
+                    return;
+                }
+                break;
+            default:
+                System.out.println("Invalid operator.");
+                return;
         }
-
-        System.out.println("Generated Password: " + password.toString());
+        System.out.println("Result: " + result);
     }
 }
